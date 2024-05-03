@@ -24,4 +24,10 @@ export class CartService {
   clearCart(): Observable<void> {
     return this.http.delete<void>(this.apiUrl);
   }
+
+  calculatePrice(cart: Product[]): number {
+    return cart.reduce((x, y) => {
+      return x + y.price;
+    }, 0)
+  }
 }
