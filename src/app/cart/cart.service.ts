@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class CartService {
 
   private readonly apiUrl = environment.apiUrl + "/cart";
+  private readonly checkoutUrl = environment.apiUrl + "/checkout";
 
   constructor(private http: HttpClient) { }
 
@@ -29,5 +30,9 @@ export class CartService {
     return cart.reduce((x, y) => {
       return x + y.price;
     }, 0)
+  }
+
+  checkoutCart(cart: Product[]): Observable<void> {
+    return this.http.post<void>(this.checkoutUrl, cart);
   }
 }

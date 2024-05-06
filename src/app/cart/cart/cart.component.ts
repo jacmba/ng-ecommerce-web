@@ -21,4 +21,16 @@ export class CartComponent implements OnInit {
           this.totalPrice = this.cartService.calculatePrice(i);
       });
   }
+
+  clearCart(): void {
+    this.cartService.clearCart().subscribe(() =>
+      console.log("Cart cleared")
+    );
+  }
+
+  checkout(): void {
+    this.cartService.checkoutCart(this.cartItems).subscribe(() =>
+      console.log("Cart checked out")
+    );
+  }
 }
